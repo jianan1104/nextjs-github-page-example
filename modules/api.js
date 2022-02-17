@@ -2,14 +2,13 @@ import { Octokit } from "@octokit/core";
 
 class api {
     constructor() {
-        this.octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN });
+        this.octokit = new Octokit();
     }
 
     async getRepositoriesByUser(username) {
         // Request repositories data
         const response = await this.octokit.request('GET /users/{username}/repos', {
-            username: username,
-            sort: 'updated'
+            username: username
           });
 
         // Some repositories don't correctly have language value in data object,
