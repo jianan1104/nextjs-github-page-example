@@ -1,21 +1,23 @@
+import React from 'react';
 import Link from 'next/link';
-import { Card, Icon } from 'semantic-ui-react';
+import { Card, Icon, Container } from 'semantic-ui-react';
 import color from '../../modules/colors';
-import ReactTimeAgo from 'react-time-ago'
 import styles from './RepositoryList.module.css';
-
+import TimeAgo from 'javascript-time-ago';
+import ReactTimeAgo from 'react-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
+TimeAgo.addLocale(en);
 
 const RepositoryList = ({ response }) => {
-
-  const renderRepositories = () => {
-    const items = response.data.map(repo => {
-      const { full_name, name, description, 
-              language, license, id, forks_count,
-              stargazers_count, updated_at
+    const renderRepositories = () => {
+      const items = response.map(repo => {
+      const { name, description, 
+              language, license, node_id, forks_count,
+              stargazers_count, updated_at, owner
             } = repo;
       return {
           header: (
-            <Link href={ `/${ full_name }` }>
+            <Link href={ `/users/${owner.login}/repos/${name}` }>
               <a>{ name }</a>
             </Link>
           ),
@@ -46,7 +48,7 @@ const RepositoryList = ({ response }) => {
               </p>
             </>
           ),
-          key: id,
+          key: node_id,
           fluid: true
         }
       });
@@ -55,7 +57,9 @@ const RepositoryList = ({ response }) => {
   };
   return (
     <>
-      { renderRepositories() }
+    <Container>
+        { renderRepositories() }
+    </Container>
     </>
   )
 };

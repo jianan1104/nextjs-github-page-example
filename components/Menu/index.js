@@ -1,54 +1,86 @@
-import React, { Component } from 'react'
-import { Menu, Icon } from 'semantic-ui-react'
+import React from 'react'
+import { Menu, Icon, Container, Image, Label } from 'semantic-ui-react'
+import styles from './Menu.module.css';
 
-export default class MenuComponent extends Component {
-  state = { activeItem: ' Repositories' }
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-  render() {
-    const { activeItem } = this.state
-    return (
-      <div style={{ marginBottom: '12px' }}>
-        <Menu pointing secondary>
+const MenuComponent = ({ user }) => {
+  return (
+    <div className={styles.menu}>
+      <Container>
+      <div style={{display: 'flex'}}>
+        <div>
+          <Image src={user.avatar_url} size='small' rounded style={{border: 'solid #eeeeee'}}/>
+        </div>
+        <div style={{ padding:'24px'}}>
+          <h2>
+            {
+              user.name ? user.name : user.login
+            }
+          </h2>
+          {
+            user.bio ? <p className='description'>{ user.bio }</p> : null
+          }
+          {
+            user.location ? <span><Icon name='location arrow'/>{ user.location }&emsp;</span> : null
+          }
+          {
+            user.blog ? (
+              <span>
+                <Icon name='linkify'/>
+                <span>
+                  <a href={user.blog}>{ user.blog } &emsp;</a>
+                </span>
+            </span>
+            ) : null
+          }
+          {
+            user.twitter_username ? (
+              <span>
+                <Icon name='twitter'/>
+                <span>
+                  <a href={`https://twitter.com/${user.twitter_username}`}>{ `@${user.twitter_username}` }&emsp;</a>
+                </span>
+              </span>
+            ) : null
+          }
+        </div>
+      </div>
+      <Menu pointing secondary style={{borderBottom: 'none'}}>
+        <Menu.Menu>
           <Menu.Item
             name=' Overview'
-            active={activeItem === ' Overview'}
-            onClick={this.handleItemClick}
           >
             <Icon name='home'/><span> Overview</span>
           </Menu.Item>
           <Menu.Item
             name=' Repositories'
-            active={activeItem === ' Repositories'}
-            onClick={this.handleItemClick}
+            active={true}
           >
             <Icon name='book'/><span> Repositories</span>
+            <Label circular>
+              { user.public_repos }
+            </Label>
           </Menu.Item>
           <Menu.Item
             name=' Packages'
-            active={activeItem === ' Packages'}
-            onClick={this.handleItemClick}
           >
             <Icon name='cube'/><span> Packages</span>
           </Menu.Item>
           <Menu.Item
             name='  People'
-            active={activeItem === '  People'}
-            onClick={this.handleItemClick}
           >
             <Icon name='user'/><span>  People</span>
           </Menu.Item>
           <Menu.Item
             name='  Projects'
-            active={activeItem === '  Projects'}
-            onClick={this.handleItemClick}
           >
             <Icon name='file alternate outline'/><span>  Projects</span>
           </Menu.Item>
-          
-        </Menu>
-      </div>
-    )
-  }
+        </Menu.Menu>
+      </Menu>
+      </Container>
+    </div>
+  )
+
 }
+
+export default MenuComponent;

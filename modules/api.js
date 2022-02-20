@@ -5,43 +5,101 @@ class api {
         this.octokit = new Octokit();
     }
 
-    async getRepositoriesByUser(username) {
+    async getRepositoriesByUser(username, pageNumber = 1) {
         // Request repositories data
-        const response = await this.octokit.request('GET /users/{username}/repos', {
-            username: username
+        let response;
+        await this.octokit.request('GET /users/{username}/repos', {
+            username: username,
+            sort: 'updated',
+            per_page: 10,
+            page: pageNumber
+          }).then(res => {
+              if(res.status === 200) {
+                  response = res.data
+              } else {
+                logger.error(`Http status is ${res.status}. ${res.data.message}`);
+                  throw `GET /users/{username}/repos FAILED. Http status is ${res.status}`;
+              }
+          }).catch(err => {
+              const msg = `HTTP[${err.status}] ${err.response.data.message}`;
+              throw msg;
           });
 
         // Some repositories don't correctly have language value in data object,
         // So just call languages API to get it.
-        for (const repo of response.data) {
-            if(!repo.language) {
-                const language = await this.getLanguageByRepository(repo.owner.login, repo.name);
-                // Some repos also are missing data, so check again
-                repo.language = language !== undefined ? language : null;
+        if(response !== undefined) {
+            for (const repo of response) {
+                if(!repo.language) {
+                    const language = await this.getLanguageByRepository(repo.owner.login, repo.name);
+                    // Some repos also are missing data, so check again
+                    repo.language = language !== undefined ? language : null;
+                }
             }
+    
+            return response;
+        } else {
+            const msg = `Response is ${response}`;
+            throw msg;
             
         }
-
-          return response;
     };
 
     async getLanguageByRepository(owner, name){
         // Request languages data
-        const language = await this.octokit.request('GET /repos/{owner}/{repo}/languages', {
+        let language;
+        await this.octokit.request('GET /repos/{owner}/{repo}/languages', {
             owner: owner,
-            repo: name })
-            .then(response => {
-                // If it has languages in data?
-                if(response.data){
-                    // Get main programming language sort by value.
-                    let mainLanguage = Object.fromEntries(
-                        Object.entries(response.data).sort(([a,],[b,]) => a-b)
-                    );
-                    mainLanguage = Object.keys(mainLanguage)[0];
-                    return mainLanguage;
+            repo: name 
+            }).then(res => {
+                if(res.status === 200) {
+                    // If it has languages in data?
+                    if(res.data){
+                        // Get main programming language sort by value.
+                        let mainLanguage = Object.fromEntries(
+                            Object.entries(res.data).sort(([a,],[b,]) => a-b)
+                        );
+                        mainLanguage = Object.keys(mainLanguage)[0];
+                        language = mainLanguage;
+                    }
                 }
+            }).catch(err => {
+                const msg = `HTTP[${err.status}] ${err.response.data.message}`;
+              throw msg;
             });
             return language;
+    };
+
+    async getSingleRepository(owner, repo) {
+        let response;
+        await octokit.request('GET /repos/{owner}/{repo}', {
+            owner: owner,
+            repo: repo
+          }).then(res => {
+              if(res.status === 200) {
+                  response = res.data;
+              }
+          }).catch(err => {
+              const msg = `HTTP[${err.status}] ${err.response.data.message}`;
+              throw msg;
+        });
+
+        return response;
+    };
+
+    async getUserDetail(name) {
+        let user;
+        await this.octokit.request('GET /users/{username}', {
+            username: name
+          }).then(res => {
+            if(res.status === 200) {
+                user = res.data;
+            }
+          }).catch(err => {
+            const msg = `HTTP[${err.status}] ${err.response.data.message}`;
+            throw msg;
+      });
+
+      return user;
     }
 };
 
