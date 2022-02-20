@@ -5,7 +5,7 @@ import MenuComponent from '../../../components/Menu';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 
 
-const repos = ({ response, user, username }) => {
+const Repos = ({ response, user, username }) => {
   const [pageNumber, setPageNumber] = useState(2);
   const [data, setData] = useState(response);
   const handleOnDocumentBottom = useCallback(async () => {
@@ -41,4 +41,4 @@ export async function getServerSideProps(context) {
 };
 
 
-export default repos;
+export default Repos;
