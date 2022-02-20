@@ -4,18 +4,21 @@ import RepositoryList from "../../../components/RepositoryList";
 import MenuComponent from '../../../components/Menu';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 
+
 const repos = ({ response, user, username }) => {
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(2);
   const [data, setData] = useState(response);
   const handleOnDocumentBottom = useCallback(async () => {
-    console.log('I am at bottom! ' + Math.round(performance.now()));
-    setPageNumber(pageNumber + 1);
-    const currentData = data.slice();
-    const newData = await api.getRepositoriesByUser(username, pageNumber + 1);
-    console.log(currentData);
-    console.log(newData);
-    currentData.push(...newData);
-    setData(currentData);
+    // When repos still available
+    if(!(pageNumber*10 >= user.public_repos)) {
+      console.log(pageNumber);
+      const currentData = data.slice();
+      const newData = await api.getRepositoriesByUser(username, pageNumber);
+      currentData.push(...newData);
+      setPageNumber(pageNumber + 1);
+      setData(currentData);
+    }
+    
   });
   useBottomScrollListener(handleOnDocumentBottom);
 

@@ -1,50 +1,65 @@
 import React from 'react'
-import { Menu, Icon, Container, Image, Label } from 'semantic-ui-react'
+import { Menu, Icon, Container, Image, Label, Grid } from 'semantic-ui-react'
 import styles from './Menu.module.css';
 
 const MenuComponent = ({ user }) => {
   return (
     <div className={styles.menu}>
-      <Container>
-      <div style={{display: 'flex'}}>
-        <div>
-          <Image src={user.avatar_url} size='small' rounded style={{border: 'solid #eeeeee'}}/>
-        </div>
-        <div style={{ padding:'24px'}}>
-          <h2>
-            {
-              user.name ? user.name : user.login
-            }
-          </h2>
-          {
-            user.bio ? <p className='description'>{ user.bio }</p> : null
-          }
-          {
-            user.location ? <span><Icon name='location arrow'/>{ user.location }&emsp;</span> : null
-          }
-          {
-            user.blog ? (
-              <span>
-                <Icon name='linkify'/>
-                <span>
-                  <a href={user.blog}>{ user.blog } &emsp;</a>
-                </span>
-            </span>
-            ) : null
-          }
-          {
-            user.twitter_username ? (
-              <span>
-                <Icon name='twitter'/>
-                <span>
-                  <a href={`https://twitter.com/${user.twitter_username}`}>{ `@${user.twitter_username}` }&emsp;</a>
-                </span>
-              </span>
-            ) : null
-          }
-        </div>
-      </div>
-      <Menu pointing secondary style={{borderBottom: 'none'}}>
+      <Container >
+        <Grid columns={2} stackable>
+          <Grid.Column width={2}>
+            <div>
+              <Image src={user.avatar_url} size='small' rounded style={{border: 'solid #eeeeee'}}/>
+            </div>
+          </Grid.Column>
+          <Grid.Column width={14}>
+            <Grid.Row columns={5}>
+              <Grid.Column>
+                <h2>
+                  {
+                    user.name ? user.name : user.login 
+                  }
+                </h2>
+              </Grid.Column>
+              <Grid.Column>
+                  {
+                    user.bio ? <p className='description'>{ user.bio }</p> : null
+                  }
+                  
+              </Grid.Column>
+              <Grid.Column>
+                  {
+                    user.location ? <span><Icon name='location arrow'/>{ user.location }&emsp;</span> : null
+                  }
+              </Grid.Column>
+              <Grid.Column>
+                  {
+                    user.blog ? (
+                      <span>
+                        <Icon name='linkify'/>
+                        <span>
+                          <a href={user.blog}>{ user.blog } &emsp;</a>
+                        </span>
+                    </span>
+                    ) : null
+                  }
+              </Grid.Column>
+              <Grid.Column>
+                    {
+                      user.twitter_username ? (
+                        <span>
+                          <Icon name='twitter'/>
+                          <span>
+                            <a href={`https://twitter.com/${user.twitter_username}`}>{ `@${user.twitter_username}` }&emsp;</a>
+                          </span>
+                        </span>
+                      ) : null
+                    }
+              </Grid.Column>
+            </Grid.Row>
+          </Grid.Column>
+        </Grid>
+      <Menu pointing secondary style={{ overflowX: 'scroll', overflowY: 'hidden'}}>
         <Menu.Menu>
           <Menu.Item
             name=' Overview'

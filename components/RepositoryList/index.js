@@ -10,9 +10,9 @@ TimeAgo.addLocale(en);
 
 const RepositoryList = ({ response }) => {
     const renderRepositories = () => {
-      const items = response.map(repo => {
+      const items = response.map((repo, idx) => {
       const { name, description, 
-              language, license, node_id, forks_count,
+              language, license, forks_count,
               stargazers_count, updated_at, owner
             } = repo;
       return {
@@ -39,16 +39,16 @@ const RepositoryList = ({ response }) => {
                     </>
                   )  : null }
                 { <>
-                    <Icon name='fork' /><span className={styles.label_mr}>{ forks_count }</span>
-                    <Icon name='star outline'/><span className={styles.label_mr}>{ stargazers_count }</span>
-                    <Icon name='arrows alternate vertical'/><span className={styles.label_mr}>{ stargazers_count }</span>
+                    <span className={styles.label_mr}><Icon name='fork' />{ forks_count }</span>
+                    <span className={styles.label_mr}><Icon name='star outline'/>{ stargazers_count }</span>
+                    <span className={styles.label_mr}><Icon name='arrows alternate vertical'/>{ stargazers_count }</span>
                   </> }
                 <span>Updated <ReactTimeAgo date={new Date(updated_at)} locale="en-US"/></span>
                 
               </p>
             </>
           ),
-          key: node_id,
+          key: idx,
           fluid: true
         }
       });

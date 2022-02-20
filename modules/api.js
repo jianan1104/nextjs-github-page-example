@@ -2,7 +2,7 @@ import { Octokit } from "@octokit/core";
 
 class api {
     constructor() {
-        this.octokit = new Octokit();
+        this.octokit = new Octokit( { auth: process.env.GITHUB_API_TOKEN });
     }
 
     async getRepositoriesByUser(username, pageNumber = 1) {
