@@ -19,7 +19,7 @@ const repos = ({ response, user, username }) => {
       setData(currentData);
     }
     
-  });
+  }, []);
   useBottomScrollListener(handleOnDocumentBottom);
 
   return (
