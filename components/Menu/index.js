@@ -59,7 +59,7 @@ const MenuComponent = ({ user }) => {
             </Grid.Row>
           </Grid.Column>
         </Grid>
-      <Menu pointing secondary style={{ overflowX: 'scroll', overflowY: 'hidden'}}>
+      <Menu pointing secondary style={{ overflowX: 'scroll', overflowY: 'hidden', paddingBottom: '0px'}}>
         <Menu.Menu>
           <Menu.Item
             name=' Overview'

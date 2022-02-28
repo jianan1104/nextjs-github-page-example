@@ -2,7 +2,7 @@ import { Octokit } from "@octokit/core";
 
 class api {
     constructor() {
-        this.octokit = new Octokit( { auth: process.env.GITHUB_API_TOKEN });
+        this.octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN});
     }
 
     async getRepositoriesByUser(username, pageNumber = 1) {
@@ -70,8 +70,9 @@ class api {
     };
 
     async getSingleRepository(owner, repo) {
+        console.log(owner, repo)
         let response;
-        await octokit.request('GET /repos/{owner}/{repo}', {
+        await this.octokit.request('GET /repos/{owner}/{repo}', {
             owner: owner,
             repo: repo
           }).then(res => {
@@ -100,6 +101,22 @@ class api {
       });
 
       return user;
+    };
+
+    async getReadme(owner, repo) {
+        let doc;
+        await this.octokit.request('GET /repos/{owner}/{repo}/readme', {
+            owner: owner,
+            repo: repo
+          }).then(res => {
+            if(res.status === 200) {
+                doc = res.data.content;
+            }
+          }).catch(err => {
+            const msg = `HTTP[${err.status}] ${err.response.data.message}`;
+            throw msg;
+      });
+      return doc;
     }
 };
 
