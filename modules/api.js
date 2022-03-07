@@ -1,5 +1,6 @@
 import { Octokit } from "@octokit/core";
 import base64 from "base-64";
+import utf8 from 'utf8';
 class api {
     constructor() {
         this.octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN});
@@ -110,7 +111,7 @@ class api {
             repo: repo
           }).then(res => {
             if(res.status === 200) {
-                doc = base64.decode(res.data.content);
+                doc = utf8.decode(base64.decode(res.data.content));
             }
           }).catch(err => {
             const msg = `HTTP[${err.status}] ${err.response.data.message}`;

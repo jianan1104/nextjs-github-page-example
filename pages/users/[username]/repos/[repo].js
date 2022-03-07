@@ -30,7 +30,7 @@ const repo = ({ username, repo, data, readme }) => {
             <div>
               { data.topics.map((topic,idx) => {
                 return (
-                  <a href={`https://github.com/topics/${topic}`} target='_blank' key={idx}>
+                  <a href={`https://github.com/topics/${topic}`} target='_blank' key={idx} rel="noreferrer">
                     <Button circular color='blue' style={{ padding: '8px', marginTop: '4px' }}>{ topic } </Button>
                   </a>
                 )
