@@ -10,6 +10,7 @@
   "dependencies": {
     "@artsy/fresnel": "^3.4.0",
     "@octokit/core": "^3.5.1",
+    "base-64": "^1.0.0",
     "dotenv": "^16.0.0",
     "javascript-time-ago": "^2.3.13",
     "log4js": "^6.4.1",
@@ -20,6 +21,7 @@
     "react": "17.0.2",
     "react-bottom-scroll-listener": "^5.0.0",
     "react-dom": "17.0.2",
+    "react-markdown": "^8.0.0",
     "react-scroll-to-top": "^1.0.8",
     "react-time-ago": "^7.1.9",
     "semantic-ui-css": "^2.4.1",

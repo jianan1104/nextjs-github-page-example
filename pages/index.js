@@ -9,7 +9,7 @@ const IconWithTextComponent = ({src, name}) => {
       <Button basic >
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Image size='tiny' circular src={src} />
-          { /* Because Amazon user name on github is Amzn, so do this trick.*/}
+          { /* Because Amazon user name on github is Amzn, so do this little trick to fix it.*/}
           <h3>{ name === 'Amzn' ? 'Amazon' : name  }</h3>
         </div>
       </Button>

@@ -13,9 +13,11 @@ const RepositoryHeader = ({ username, repo, data }) => {
         }}>
           <Breadcrumb style={{ fontSize: '20px'}}>
             <Icon name='book' size='small' style={{color: 'grey'}}/>
-            <Breadcrumb.Section link>{ username }</Breadcrumb.Section>
+            <Breadcrumb.Section><a href={`/users/${username}/repos`}>{ username }</a></Breadcrumb.Section>
             <Breadcrumb.Divider />
-            <Breadcrumb.Section link><p style={{ fontWeight: '600'}}>{ repo }</p></Breadcrumb.Section>
+            <Breadcrumb.Section style={{ fontWeight: '600'}} target="_blank" href={data.html_url}>
+                { repo }
+            </Breadcrumb.Section>
           </Breadcrumb>
           <MediaContextProvider>
               <Media greaterThan="sm">

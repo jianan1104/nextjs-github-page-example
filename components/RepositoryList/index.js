@@ -9,6 +9,7 @@ import en from 'javascript-time-ago/locale/en.json';
 TimeAgo.addLocale(en);
 
 const RepositoryList = ({ response }) => {
+    console.log(response);
     const renderRepositories = () => {
       const items = response.map((repo, idx) => {
       const { name, description, 
@@ -21,7 +22,6 @@ const RepositoryList = ({ response }) => {
               <a>{ name }</a>
             </Link>
           ),
-          meta: 'Forked from',
           description: description,
           // Display language, start, fork, pull request, update_date
           extra: (

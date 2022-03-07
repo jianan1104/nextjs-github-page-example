@@ -11,12 +11,10 @@ const Repos = ({ response, user, username }) => {
   const handleOnDocumentBottom = useCallback(async () => {
     // When repos still available
     if(!(pageNumber*10 >= user.public_repos)) {
-      console.log(pageNumber);
-      const currentData = data.slice();
-      const newData = await api.getRepositoriesByUser(username, pageNumber);
-      currentData.push(...newData);
-      setPageNumber(pageNumber + 1);
-      setData(currentData);
+      await api.getRepositoriesByUser(username, pageNumber).then(newData => {
+        setData([...data, ...newData]);
+        setPageNumber(pageNumber + 1);
+      });
     }
     
   }, []);
