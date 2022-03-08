@@ -22,7 +22,12 @@ const Index = () => {
     <>
     <Container>
       <div style={{ display: 'flex' , flexDirection: 'column',alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
-        <h2 style={{ textAlign: 'center', marginBottom: '32px'}}>Dcard or FAANG? 🧐</h2>
+        <h2 style={{ textAlign: 'center', 
+                     marginBottom: '32px',
+                     background: 'linear-gradient(to right, #30CFD0, #c43ad6)',
+                     WebkitBackgroundClip: 'text',
+                     WebkitTextFillColor: 'transparent'
+                     }}>Dcard or FAANG?</h2>
         <Grid stackable centered>
             <IconWithTextComponent name="Dcard" src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Dcard_Favicon_x520.png"/>
             <IconWithTextComponent name="Facebook" src="https://mattgeimer.com/resources/experience/Meta.png"/>

@@ -48,7 +48,9 @@ const RepositoryHeader = ({ username, repo, data }) => {
           <Media at='sm'>
             <Container>
               <p>{data.description}</p>
-              <p><Icon name='chain'/><a href={data.homepage}>{data.homepage}</a></p>
+              { data.homepage ? (
+              <p><Icon name='chain'/><a href={data.homepage}>{data.homepage}</a></p>) : null
+              }
               <p>
                 <span><a style={{ color: '#57606a'}} href={`https://github.com/${username}/${repo}/stargazers`}><Icon name='star outline'/> {millify(data.stargazers_count)} stars&nbsp; </a></span>
                 <span><a style={{ color: '#57606a'}} href={`https://github.com/${username}/${repo}/network/members`}><Icon name='fork'/>{millify(data.forks_count)} forks</a></span>
