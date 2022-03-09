@@ -68,7 +68,7 @@ const RepositoryHeader = ({ username, repo, data }) => {
         
         <div>
           <Menu pointing secondary style={{ borderBottom: '0px'}}>
-          <Menu.Menu>
+          <Menu.Menu style={{  display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <Menu.Item active={true}>
               <Icon name='code'/><span> Code</span>
             </Menu.Item>
@@ -78,12 +78,10 @@ const RepositoryHeader = ({ username, repo, data }) => {
                 {millify(data.open_issues_count)}
               </Label>
             </Menu.Item>
-            <Menu.Item>
-              <Icon name='fork'/><span> Pull requests</span>
-            </Menu.Item>
             <Media at='sm'>
               <Dropdown item text='More'>
                 <Dropdown.Menu>
+                  <Dropdown.Item  text='Pull requests' />
                   <Dropdown.Item  text='Actions' />
                   <Dropdown.Item  text='Projects' />
                   <Dropdown.Item  text='Wiki' />

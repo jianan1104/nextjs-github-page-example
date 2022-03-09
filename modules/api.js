@@ -114,8 +114,9 @@ class api {
                 doc = utf8.decode(base64.decode(res.data.content));
             }
           }).catch(err => {
-            const msg = `HTTP[${err.status}] ${err.response.data.message}`;
-            throw msg;
+            // const msg = `HTTP[${err.status}] ${err.response.data.message}`;
+            // throw msg;
+            doc = 'Sorry, there is no readme.md. :)'
       });
       return doc;
     }

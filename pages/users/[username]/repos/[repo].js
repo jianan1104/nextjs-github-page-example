@@ -26,7 +26,10 @@ const repo = ({ username, repo, data, readme }) => {
           </Grid.Column>
           <Grid.Column width={4}>
             <h3>About</h3>
-            <p>{ description }</p>
+            { description ? (
+              <p>{ description }</p>
+            ): 'He/She is lazy, nothing here.'}
+            
             <div>
               { data.topics.map((topic,idx) => {
                 return (
