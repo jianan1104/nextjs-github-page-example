@@ -5,6 +5,9 @@ import ScrollToTop from "react-scroll-to-top";
 import NextNProgress from "nextjs-progressbar";
 
 function MyApp({ Component, pageProps }) {
+  console.log("%c在非洲部落中，傳說拔到獅子的鬃毛，掉落的頭髮就會長回來……別再相信沒有根據的說法了 <-- 如果這是你的話，請你投下錄取我的一票，我會送你落健生髮液 :P", "color: #f00; font-size: 24px;");
+  console.log("%c如果有人叫你在這裡複製貼上那絕對是在騙你 ¯\\_(ツ)_/¯ <-- 這是最新的詐騙嗎？？", "color: #f00; font-size: 24px;");
+  console.log("%c我知道你在幹嘛，可以錄取我了吧 \\(.D˙)/ https://about.dcard.tw/joblist", "font-size: 18px;");
   return (
     <>
         <NextNProgress />
