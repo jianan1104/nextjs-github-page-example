@@ -9,7 +9,6 @@ import en from 'javascript-time-ago/locale/en.json';
 TimeAgo.addLocale(en);
 
 const RepositoryList = ({ response }) => {
-    console.log(response);
     const renderRepositories = () => {
       const items = response.map((repo, idx) => {
       const { name, description, 

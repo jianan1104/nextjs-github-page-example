@@ -5,7 +5,6 @@ import api from '../../../../modules/api';
 import ReactMarkdown from 'react-markdown';
 
 const repo = ({ username, repo, data, readme }) => {
-  console.log(data);
   const { description } = data;
   return (
     <>
@@ -15,7 +14,7 @@ const repo = ({ username, repo, data, readme }) => {
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={12}>
-            <Card style={{ width: '100%' }}>
+            <Card style={{ width: '100%', overflowX: 'hidden' }}>
               <Card.Header style={{ padding: '12px'}}><h3><Icon name="list"/>&nbsp;&nbsp;readme.md</h3></Card.Header>
               <Card.Content style={{ padding: '18px'}}>
               <ReactMarkdown>
