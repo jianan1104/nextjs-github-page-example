@@ -4,6 +4,7 @@ import '../style/global.css';
 import ScrollToTop from "react-scroll-to-top";
 import NextNProgress from "nextjs-progressbar";
 
+
 function MyApp({ Component, pageProps }) {
 //
 //                       _oo0oo_
