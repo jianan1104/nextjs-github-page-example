@@ -3,7 +3,7 @@ next-github-page
 
 This is a [Next.js](https://nextjs.org/) project for simulating [Github](https://github.com/) user and repository page by using github API.
 
-## Demp
+## Demo
 
 https://next-github-page.vercel.app/
 
