@@ -18,11 +18,22 @@ This project can visit any user or repository page of Github resource.
 - Repository page
 ![](https://i.imgur.com/a0dz5VG.png)
 
+## Developement/Testing Env
+### OS
+- MacOS 12.2.1
+### Developing Language
+- Javascript
+### Framework
+- React
+- Next.js
+- semantic-ui 
+
 ## Getting Started
 
 ```bash
 git clone https://github.com/jianan1104/next-github-page.git
 cd next-github-page
+npm install
 npm run dev
 ```
 
