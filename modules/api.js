@@ -1,13 +1,15 @@
 import { Octokit } from "@octokit/core";
 import base64 from "base-64";
 import utf8 from 'utf8';
+
 class api {
+    // Initialize octokit 
     constructor() {
         this.octokit = new Octokit({ auth: process.env.GITHUB_API_TOKEN});
     }
 
     async getRepositoriesByUser(username, pageNumber = 1) {
-        // Request repositories data
+        // Request repositories data of a user
         let response;
         await this.octokit.request('GET /users/{username}/repos', {
             username: username,
@@ -41,12 +43,11 @@ class api {
         } else {
             const msg = `Response is ${response}`;
             throw msg;
-            
         }
     };
 
     async getLanguageByRepository(owner, name){
-        // Request languages data
+        // Request languages data of repo
         let language;
         await this.octokit.request('GET /repos/{owner}/{repo}/languages', {
             owner: owner,
@@ -65,7 +66,7 @@ class api {
                 }
             }).catch(err => {
                 const msg = `HTTP[${err.status}] ${err.response.data.message}`;
-              throw msg;
+                throw msg;
             });
             return language;
     };
@@ -114,8 +115,6 @@ class api {
                 doc = utf8.decode(base64.decode(res.data.content));
             }
           }).catch(err => {
-            // const msg = `HTTP[${err.status}] ${err.response.data.message}`;
-            // throw msg;
             doc = 'Sorry, there is no readme.md. :)'
       });
       return doc;

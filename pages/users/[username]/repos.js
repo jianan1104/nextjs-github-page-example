@@ -10,7 +10,7 @@ const Repos = ({ response, user, username }) => {
   const [data, setData] = useState(response);
   const handleOnDocumentBottom = useCallback(async () => {
     // When repos still available
-    if(!(pageNumber*10 >= user.public_repos)) {
+    if((pageNumber*10 <= user.public_repos)) {
       await api.getRepositoriesByUser(username, pageNumber).then(newData => {
         setData([...data, ...newData]);
         setPageNumber(pageNumber + 1);
@@ -18,6 +18,7 @@ const Repos = ({ response, user, username }) => {
     }
     
   }, []);
+  // When reach page bottom, get new data
   useBottomScrollListener(handleOnDocumentBottom);
 
   return (

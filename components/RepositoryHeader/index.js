@@ -1,16 +1,13 @@
 import { Icon, Container, Breadcrumb, Button, Label, Menu, Dropdown } from 'semantic-ui-react';
 import { Media, MediaContextProvider } from "../../modules/media";
 import millify from "millify";
+import styles from './RepositoryHeader.module.css';
+
 
 const RepositoryHeader = ({ username, repo, data }) => {
     return (
-        <div style={{ backgroundColor: '#f6f8fa',marginBottom: '32px', paddingLeft: '24px', paddingRight: '24px' }}>
-        <div style={{
-          padding: '16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
+        <div className={styles.header}>
+        <div className={styles.titleBar}>
           <Breadcrumb style={{ fontSize: '20px'}}>
             <Icon name='book' size='small' style={{color: 'grey'}}/>
             <Breadcrumb.Section><a href={`/users/${username}/repos`}>{ username }</a></Breadcrumb.Section>
@@ -22,19 +19,19 @@ const RepositoryHeader = ({ username, repo, data }) => {
           <MediaContextProvider>
               <Media greaterThan="sm">
                 <span>
-                  <Button basic style={{ paddingTop: '4px', paddingBottom: '4px', paddingLeft: '12px', paddingRight: '12px'}}>
+                  <Button basic className={styles.Button}>
                     <Icon name='eye' />Unwatch&nbsp; 
                     <Label circular>
                       {millify(data.subscribers_count)}
                     </Label>
                   </Button>
-                  <Button basic style={{ paddingTop: '4px', paddingBottom: '4px', paddingLeft: '12px', paddingRight: '12px'}}>
+                  <Button basic className={styles.Button}>
                     <Icon name='fork' />Fork&nbsp; 
                     <Label circular>
                       {millify(data.forks_count)}
                     </Label>
                   </Button>
-                  <Button basic style={{ paddingTop: '4px', paddingBottom: '4px', paddingLeft: '12px', paddingRight: '12px'}}>
+                  <Button basic className={styles.Button}>
                     <Icon name='star outline' />Star&nbsp; 
                     <Label circular>
                       {millify(data.stargazers_count)}
@@ -56,10 +53,10 @@ const RepositoryHeader = ({ username, repo, data }) => {
                 <span><a style={{ color: '#57606a'}} href={`https://github.com/${username}/${repo}/network/members`}><Icon name='fork'/>{millify(data.forks_count)} forks</a></span>
               </p>
               <div style={{ display: 'flex'}}>
-              <Button basic style={{ width: '100%', paddingTop: '8px', paddingBottom: '8px', paddingLeft: '12px', paddingRight: '12px'}}>
+              <Button basic className={styles.ButtonSM}>
                   <Icon name='star outline' />Star&nbsp; 
                 </Button>
-                <Button basic style={{ width: '100%', paddingTop: '8px', paddingBottom: '8px', paddingLeft: '12px', paddingRight: '12px'}}>
+                <Button basic className={styles.ButtonSM}>
                   <Icon name='eye' />Watch&nbsp; 
                 </Button>
               </div>

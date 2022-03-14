@@ -13,22 +13,10 @@ const DesktopMenu = () => {
                 <Menu.Item>
                     <Input icon='search' placeholder='Search or jump to...' />
                 </Menu.Item>
-                <Menu.Item header
-                name='Pull requests'
-                className={styles.text}
-                />
-                <Menu.Item header
-                name='Issues'
-                className={styles.text}
-                />
-                <Menu.Item header
-                name='Marketplace'
-                className={styles.text}
-                />
-                <Menu.Item header
-                name='Explore'
-                className={styles.text}
-                />
+                <Menu.Item header name='Pull requests' className={styles.text} />
+                <Menu.Item header name='Issues'        className={styles.text} />
+                <Menu.Item header name='Marketplace'   className={styles.text} />
+                <Menu.Item header name='Explore'       className={styles.text} />
                 <Menu.Menu position='right' >
                     <Menu.Item className={styles.text}>
                         <Icon name="bell outline"/>
@@ -49,7 +37,7 @@ const MobileMenu = () => {
             <div className={styles.header}>
                 <div className={styles.text} >
                     <div className={styles.mobileHeader}>
-                        <Icon  name='bars' size='large' onClick={() => setVisible(true)} style={{ cursor: 'pointer'}}/>
+                        <Icon name='bars' size='large' onClick={() => setVisible(true)} style={{ cursor: 'pointer'}}/>
                         <Icon name='github' size='big'/>
                         <Icon name='bell outline' size='large'/>
                     </div>
