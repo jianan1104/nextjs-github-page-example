@@ -28,6 +28,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+- Visit a user page
+http://localhost:3000/users/`Dcard`/repos
 
+- Visit a repository page of a user
+http://localhost:3000/users/`Dcard`/repos/`yarn-plugins`
 
 
