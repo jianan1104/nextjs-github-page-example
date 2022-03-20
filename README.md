@@ -35,8 +35,8 @@ This project can visit any user or repository page of Github resource.
 ## Getting Started
 
 ```bash
-git clone https://github.com/jianan1104/next-github-page.git
-cd next-github-page
+git clone https://github.com/jianan1104/nextjs-github-page-example.git
+cd nextjs-github-page-example
 npm install
 npm run dev
 ```
